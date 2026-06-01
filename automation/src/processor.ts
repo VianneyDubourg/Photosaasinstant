@@ -71,24 +71,19 @@ export async function processPhoto(filePath: string, config: {
   logger.success(`Preview generated: ${path.basename(previewPath)}`)
 
   // ── 2. HD — full resolution + subtle copyright at bottom center ─────────
-  const fontSize = Math.max(18, Math.round(imgWidth * 0.012))
-  const barHeight = Math.round(fontSize * 2.4)
+  const fontSize = Math.max(12, Math.round(imgWidth * 0.007))
+  const bottomMargin = Math.round(fontSize * 1.8)
   const copyrightText = `© Vianney Dubourg · vlogo.fr`
 
   const copyrightOverlay = Buffer.from(`
     <svg width="${imgWidth}" height="${imgHeight}">
-      <rect
-        x="0" y="${imgHeight - barHeight}"
-        width="${imgWidth}" height="${barHeight}"
-        fill="rgba(0,0,0,0.38)"
-      />
       <text
-        x="50%" y="${imgHeight - barHeight / 2}"
-        text-anchor="middle" dominant-baseline="middle"
+        x="50%" y="${imgHeight - bottomMargin}"
+        text-anchor="middle" dominant-baseline="auto"
         font-family="Arial, Helvetica, sans-serif"
         font-size="${fontSize}px"
-        fill="rgba(255,255,255,0.72)"
-        letter-spacing="1"
+        fill="rgba(255,255,255,0.28)"
+        letter-spacing="0.5"
       >${copyrightText}</text>
     </svg>
   `)
