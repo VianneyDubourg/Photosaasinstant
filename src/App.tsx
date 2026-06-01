@@ -1,4 +1,6 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { supabase } from './lib/supabase'
 import Layout from './components/Layout'
 import HomePage from './pages/HomePage'
 import GalleryPage from './pages/GalleryPage'
@@ -9,10 +11,22 @@ import AdminLayout from './pages/admin/AdminLayout'
 import AdminDashboardPage from './pages/admin/AdminDashboardPage'
 import AdminPhotosPage from './pages/admin/AdminPhotosPage'
 import AdminOrdersPage from './pages/admin/AdminOrdersPage'
+import SlideshowPage from './pages/SlideshowPage'
+
+function ProtectedSlideshow() {
+  const [authed, setAuthed] = useState<boolean | null>(null)
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => setAuthed(!!data.session))
+  }, [])
+  if (authed === null) return null
+  if (!authed) return <Navigate to="/admin/login" replace />
+  return <SlideshowPage />
+}
 
 export default function App() {
   return (
     <Routes>
+      <Route path="/slideshow" element={<ProtectedSlideshow />} />
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/photos" element={<GalleryPage />} />
