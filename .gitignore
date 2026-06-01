@@ -3,9 +3,8 @@ node_modules
 .pnp
 .pnp.js
 
-# Production
+# Production build (dist is excluded; production-build is committed for FTP deployment)
 dist
-production-build
 
 # Environment
 .env
