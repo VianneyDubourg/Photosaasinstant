@@ -64,7 +64,7 @@ Deno.serve(async (req) => {
 
     const { data: signedData, error: signedError } = await supabase.storage
       .from('originals')
-      .createSignedUrl(hdPath, 60 * 60)
+      .createSignedUrl(hdPath, 60 * 60, { download: true })
 
     if (signedError || !signedData?.signedUrl) {
       return new Response(JSON.stringify({ error: 'Could not generate download URL' }), {
