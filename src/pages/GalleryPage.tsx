@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { Calendar, Clock, MapPin } from 'lucide-react'
+import { Calendar, Clock, MapPin, Instagram } from 'lucide-react'
 import { usePhotos } from '../hooks/usePhotos'
 import PhotoGrid from '../components/PhotoGrid'
 import type { PhotoFilters } from '../types'
@@ -110,6 +110,23 @@ export default function GalleryPage() {
       </div>
 
       <PhotoGrid photos={photos} loading={isLoading} />
+
+      {/* Can't find your photo */}
+      <div className="mt-12 border border-white/10 bg-night-800 rounded-2xl p-6 text-center">
+        <p className="text-white/80 font-semibold mb-1">Can't find your photo?</p>
+        <p className="text-white/50 text-sm mb-4">
+          Photos are available for 10 hours after the event. If yours has expired or you can't find it, send me a DM on Instagram with a photo of yourself and I'll find it for you.
+        </p>
+        <a
+          href="https://instagram.com/photoinstant"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all text-white px-5 py-2.5 rounded-xl font-medium text-sm"
+        >
+          <Instagram size={16} />
+          DM me on Instagram
+        </a>
+      </div>
     </div>
   )
 }
