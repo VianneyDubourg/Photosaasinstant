@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
-import { Camera, LayoutDashboard, Images, ShoppingBag, LogOut } from 'lucide-react'
+import { Camera, LayoutDashboard, Images, ShoppingBag, LogOut, Users } from 'lucide-react'
 import type { User } from '@supabase/supabase-js'
 
 export default function AdminLayout() {
@@ -49,6 +49,9 @@ export default function AdminLayout() {
           </NavLink>
           <NavLink to="/admin/orders" className={navClass}>
             <ShoppingBag size={16} /> Orders
+          </NavLink>
+          <NavLink to="/admin/leads" className={navClass}>
+            <Users size={16} /> Leads
           </NavLink>
         </nav>
         <div className="p-3 border-t border-white/10">

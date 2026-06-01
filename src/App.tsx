@@ -11,6 +11,7 @@ import AdminLayout from './pages/admin/AdminLayout'
 import AdminDashboardPage from './pages/admin/AdminDashboardPage'
 import AdminPhotosPage from './pages/admin/AdminPhotosPage'
 import AdminOrdersPage from './pages/admin/AdminOrdersPage'
+import AdminLeadsPage from './pages/admin/AdminLeadsPage'
 import SlideshowPage from './pages/SlideshowPage'
 import BrochurePage from './pages/BrochurePage'
 import TermsPage from './pages/TermsPage'
@@ -48,6 +49,7 @@ export default function App() {
         <Route index element={<AdminDashboardPage />} />
         <Route path="photos" element={<AdminPhotosPage />} />
         <Route path="orders" element={<AdminOrdersPage />} />
+        <Route path="leads" element={<AdminLeadsPage />} />
       </Route>
     </Routes>
   )
