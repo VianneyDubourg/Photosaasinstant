@@ -46,13 +46,13 @@ export default function SlideshowPage() {
       )}
 
       {/* Left — Main photo */}
-      <div className="relative flex-1 flex items-center justify-center p-8">
+      <div className="relative flex-1 flex items-center justify-center overflow-hidden">
         {imageUrl ? (
           <img
             key={current}
             src={imageUrl}
             alt=""
-            className="max-h-full max-w-full object-contain rounded-2xl shadow-2xl"
+            className="w-full h-full object-cover"
             style={{
               transition: 'opacity 0.4s ease',
               opacity: fade ? 1 : 0,
