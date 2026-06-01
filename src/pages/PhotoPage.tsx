@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { MapPin, Clock, Calendar, ArrowLeft, Download, Loader2 } from 'lucide-react'
 import { usePhoto } from '../hooks/usePhotos'
-import { getPreviewUrl } from '../lib/supabase'
+import { getPreviewUrl, supabase } from '../lib/supabase'
 
 export default function PhotoPage() {
   const { id } = useParams<{ id: string }>()
@@ -13,13 +13,11 @@ export default function PhotoPage() {
     if (!photo) return
     setPurchasing(true)
     try {
-      const res = await fetch('/api/create-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ photoId: photo.id }),
+      const { data, error: fnError } = await supabase.functions.invoke('create-checkout', {
+        body: { photoId: photo.id },
       })
-      const { url } = await res.json()
-      if (url) window.location.href = url
+      if (fnError) throw fnError
+      if (data?.url) window.location.href = data.url
     } catch {
       alert('Payment failed to initialize. Please try again.')
     } finally {

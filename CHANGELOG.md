@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented here.
 
+## [1.0.1] - 2026-06-01
+
+### Added
+- Supabase Edge Function: `create-checkout` — creates Stripe Checkout session
+- Supabase Edge Function: `stripe-webhook` — handles payment confirmation and order creation
+- Supabase Edge Function: `get-download-url` — validates token and returns signed HD download URL
+- `supabase/config.toml` for local development
+
+### Changed
+- PhotoPage now calls Edge Function directly via Supabase client instead of `/api/create-checkout`
+
+### Removed
+- `src/lib/stripe.ts` (no longer needed, Stripe is handled server-side in Edge Functions)
+
 ## [1.0.0] - 2026-06-01
 
 ### Added

@@ -47,6 +47,38 @@ npm run dev
 
 ---
 
+## 3b. Deploy Supabase Edge Functions
+
+Install the Supabase CLI:
+```bash
+npm install -g supabase
+```
+
+Login and link your project:
+```bash
+supabase login
+supabase link --project-ref YOUR_PROJECT_REF
+```
+
+Set secrets:
+```bash
+supabase secrets set STRIPE_SECRET_KEY=sk_live_...
+supabase secrets set STRIPE_WEBHOOK_SECRET=whsec_...
+```
+
+Deploy functions:
+```bash
+supabase functions deploy create-checkout
+supabase functions deploy stripe-webhook
+supabase functions deploy get-download-url
+```
+
+Configure Stripe webhook endpoint in the Stripe dashboard:
+- URL: `https://YOUR_PROJECT_REF.supabase.co/functions/v1/stripe-webhook`
+- Events: `checkout.session.completed`
+
+---
+
 ## 4. Build for Production
 
 ```bash
