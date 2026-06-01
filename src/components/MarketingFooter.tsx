@@ -1,34 +1,73 @@
-import { Instagram, Phone, Mail, Building2, ArrowRight } from 'lucide-react'
+import { Instagram, Phone, Mail, Building2, Users, Zap } from 'lucide-react'
 
 export default function MarketingFooter() {
   return (
     <footer className="border-t border-white/10 bg-night-900 mt-12">
 
       {/* B2B widget */}
-      <div className="border-b border-white/10 py-8">
+      <div className="border-b border-white/10 py-10">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="bg-gradient-to-r from-accent/20 to-pink-500/10 border border-accent/30 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-accent/30 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Building2 className="text-accent-light" size={20} />
-              </div>
-              <div>
-                <p className="text-white font-semibold text-base mb-0.5">
-                  Bar, nightclub or event organiser?
-                </p>
-                <p className="text-white/50 text-sm leading-relaxed">
-                  I provide on-site instant photo service for your clients — they scan, pay 1 AUD and download their HD photo in seconds. Perfect for bars, clubs, festivals and private events.
-                </p>
-              </div>
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-1.5 mb-3">
+              <Building2 size={13} className="text-accent-light" />
+              <span className="text-accent-light text-xs font-medium tracking-wide uppercase">For venues &amp; organisers</span>
             </div>
-            <a
-              href="mailto:contact@photoinstant.au?subject=Photo service inquiry"
-              className="flex-shrink-0 inline-flex items-center gap-2 bg-accent hover:bg-accent-dark transition-colors text-white px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap"
-            >
-              Contact me
-              <ArrowRight size={15} />
-            </a>
+            <h2 className="text-white font-bold text-xl mb-1">Want instant photos at your event?</h2>
+            <p className="text-white/50 text-sm">Two simple options — pick what works for you.</p>
           </div>
+
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {/* Option A */}
+            <div className="bg-night-800 border border-white/10 hover:border-accent/40 transition-colors rounded-2xl p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+                  <Users size={15} className="text-green-400" />
+                </div>
+                <div>
+                  <p className="text-white font-semibold text-sm">Budget booking</p>
+                  <p className="text-green-400 text-xs">Clients pay for their own photos</p>
+                </div>
+              </div>
+              <p className="text-white/50 text-sm leading-relaxed mb-3">
+                I come at a reduced rate. Your clients scan the QR code, pay <strong className="text-white">1 AUD</strong> and download their HD photo instantly. Zero cost to you beyond my booking fee.
+              </p>
+              <a
+                href="mailto:contact@photoinstant.au?subject=Budget booking inquiry&body=Hi, I'm interested in the budget booking option (clients pay 1 AUD for their photos). My event details:"
+                className="inline-flex items-center gap-1.5 text-green-400 hover:text-green-300 text-xs font-medium transition-colors"
+              >
+                Get a quote →
+              </a>
+            </div>
+
+            {/* Option B */}
+            <div className="bg-night-800 border border-accent/30 hover:border-accent/60 transition-colors rounded-2xl p-5 relative overflow-hidden">
+              <div className="absolute top-3 right-3">
+                <span className="bg-accent/20 text-accent-light text-xs px-2 py-0.5 rounded-full font-medium">Premium</span>
+              </div>
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
+                  <Zap size={15} className="text-accent-light" />
+                </div>
+                <div>
+                  <p className="text-white font-semibold text-sm">Full service</p>
+                  <p className="text-accent-light text-xs">Photos free for all your guests</p>
+                </div>
+              </div>
+              <p className="text-white/50 text-sm leading-relaxed mb-3">
+                You pay my full rate, your guests download their HD photos for <strong className="text-white">free</strong>. A premium experience — perfect for brand activations, corporate events or luxury venues.
+              </p>
+              <a
+                href="mailto:contact@photoinstant.au?subject=Full service booking inquiry&body=Hi, I'm interested in the full service option (photos free for guests, I pay the full rate). My event details:"
+                className="inline-flex items-center gap-1.5 text-accent-light hover:text-white text-xs font-medium transition-colors"
+              >
+                Get a quote →
+              </a>
+            </div>
+          </div>
+
+          <p className="text-center text-white/30 text-xs">
+            Not sure which option? <a href="mailto:contact@photoinstant.au?subject=Venue inquiry" className="text-accent-light hover:underline">Send me a message</a> and we'll figure it out together.
+          </p>
         </div>
       </div>
 
