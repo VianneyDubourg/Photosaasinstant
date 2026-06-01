@@ -1,5 +1,6 @@
 import * as path from 'path'
 import * as fs from 'fs'
+import * as readline from 'readline'
 import { config as loadDotenv } from 'dotenv'
 import { logger } from './logger'
 import { startWatcher } from './watcher'
@@ -18,9 +19,19 @@ function requireEnv(key: string): string {
   return value
 }
 
-function main() {
+function askQuestion(question: string): Promise<string> {
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
+  return new Promise(resolve => {
+    rl.question(question, answer => {
+      rl.close()
+      resolve(answer.trim())
+    })
+  })
+}
+
+async function main() {
   console.log('╔════════════════════════════════════╗')
-  console.log('║   PhotoInstant Uploader v1.0.0     ║')
+  console.log('║   PhotoInstant Uploader v1.1.0     ║')
   console.log('╚════════════════════════════════════╝')
   console.log()
 
@@ -39,12 +50,28 @@ function main() {
     process.exit(1)
   }
 
-  const locationLabel = process.env.LOCATION_LABEL ?? ''
+  // Ask for location interactively
+  const envLocation = process.env.LOCATION_LABEL ?? ''
+  let locationLabel: string
+
+  if (envLocation) {
+    const override = await askQuestion(`📍 Location [${envLocation}] — press Enter to keep or type a new one: `)
+    locationLabel = override || envLocation
+  } else {
+    locationLabel = await askQuestion('📍 Location for this session (e.g. "Surry Hills", "Sydney CBD"): ')
+  }
+
+  if (locationLabel) {
+    console.log(`✓ Location set to: ${locationLabel}\n`)
+  } else {
+    console.log('⚠ No location set — photos will have no location tag\n')
+  }
+
   const priceCents = parseInt(process.env.PRICE_CENTS ?? '100', 10)
   const currency = process.env.CURRENCY ?? 'AUD'
   const previewWidth = parseInt(process.env.PREVIEW_WIDTH ?? '800', 10)
   const previewQuality = parseInt(process.env.PREVIEW_QUALITY ?? '75', 10)
-  const watermarkText = process.env.WATERMARK_TEXT ?? 'photoinstant.au'
+  const watermarkText = process.env.WATERMARK_TEXT ?? 'PREVIEW'
 
   startWatcher(
     watchFolder,
