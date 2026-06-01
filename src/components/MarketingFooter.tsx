@@ -1,4 +1,4 @@
-import { Instagram, Phone, Mail, Building2, Users, Zap, Download } from 'lucide-react'
+import { Instagram, Mail, Building2, Users, Zap, Download } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 export default function MarketingFooter() {
@@ -93,11 +93,7 @@ export default function MarketingFooter() {
                 <Instagram size={15} />
                 <span>@photoinstant</span>
               </a>
-              <a href="tel:+61400000000" className="flex items-center gap-1.5 hover:text-accent-light transition-colors">
-                <Phone size={15} />
-                <span>+61 400 000 000</span>
-              </a>
-              <a href="mailto:contact@vlogo.fr" className="flex items-center gap-1.5 hover:text-accent-light transition-colors">
+<a href="mailto:contact@vlogo.fr" className="flex items-center gap-1.5 hover:text-accent-light transition-colors">
                 <Mail size={15} />
                 <span>contact@vlogo.fr</span>
               </a>
