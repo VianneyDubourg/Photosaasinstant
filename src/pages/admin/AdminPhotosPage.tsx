@@ -29,8 +29,12 @@ export default function AdminPhotosPage() {
   })
 
   const deletePhoto = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from('photos').delete().eq('id', id)
+    mutationFn: async (photo: Photo) => {
+      // Delete files from storage first
+      await supabase.storage.from('previews').remove([photo.preview_path])
+      await supabase.storage.from('originals').remove([photo.hd_path])
+      // Then delete the database record
+      const { error } = await supabase.from('photos').delete().eq('id', photo.id)
       if (error) throw error
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: ['admin-photos'] }),
@@ -110,7 +114,7 @@ export default function AdminPhotosPage() {
                 </button>
                 <button
                   onClick={() => {
-                    if (confirm('Delete this photo?')) deletePhoto.mutate(photo.id)
+                    if (confirm('Delete this photo? This cannot be undone.')) deletePhoto.mutate(photo)
                   }}
                   className="w-7 h-7 bg-black/60 rounded-lg flex items-center justify-center hover:bg-red-500/60 transition-colors"
                   title="Delete"
