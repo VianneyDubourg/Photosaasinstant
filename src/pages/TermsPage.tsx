@@ -29,7 +29,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-white font-semibold text-lg mb-3">4. Download Links</h2>
-          <p>After successful payment, you will receive a secure download link. This link is valid for 48 hours from the time of purchase. It is your responsibility to download your photo within this period. We are not obligated to reissue expired download links, however we will make reasonable efforts to assist — contact us at <a href="mailto:contact@vlogo.fr" className="text-accent-light hover:underline">contact@vlogo.fr</a>.</p>
+          <p>After successful payment, you will receive a secure download link. This link is valid for 10 hours from the time of purchase, in line with our photo availability window. It is your responsibility to download your photo within this period. If you experience a technical issue, contact us at <a href="mailto:contact@vlogo.fr" className="text-accent-light hover:underline">contact@vlogo.fr</a> or via Instagram.</p>
         </section>
 
         <section>

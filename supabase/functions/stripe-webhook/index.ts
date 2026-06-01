@@ -47,7 +47,7 @@ Deno.serve(async (req) => {
     }
 
     const downloadToken = crypto.randomUUID()
-    const expiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString()
+    const expiresAt = new Date(Date.now() + 10 * 60 * 60 * 1000).toISOString()
 
     const { error } = await supabase.from('orders').insert({
       photo_id: photoId,
