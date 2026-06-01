@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented here.
 
+## [1.0.2] - 2026-06-01
+
+### Added
+- `automation/` — Windows uploader tool for Surface Go 3
+  - Watches a folder for new photo files (JPG, RAW, ARW, CR2, CR3, NEF, ORF, RW2)
+  - Generates watermarked low-res JPEG preview using Sharp
+  - Uploads preview to `previews` bucket and original to `originals` bucket
+  - Creates database record automatically
+  - Configurable via `.env` file (location, price, watermark text)
+  - Buildable to standalone `.exe` via `pkg`
+
 ## [1.0.1] - 2026-06-01
 
 ### Added

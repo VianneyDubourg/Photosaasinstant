@@ -6,7 +6,7 @@
 
 ## Backlog
 - [ ] Watermark overlay on preview generation
-- [ ] Local automation script for Surface Go 3 (Windows)
+- [x] Local automation script for Surface Go 3 (Windows)
 - [ ] QR code generator for events
 - [ ] Email receipt after purchase
 - [ ] Admin: edit photo metadata (date, time, location, price)

@@ -14,10 +14,10 @@
 - [ ] Performance audit
 
 ## v1.2 — Automation
-- [ ] Windows desktop app for automated upload (Surface Go 3)
-- [ ] Auto watermark generation
-- [ ] Auto preview generation (Sharp or Jimp)
-- [ ] Folder watcher
+- [x] Windows desktop app for automated upload (Surface Go 3)
+- [x] Auto watermark generation
+- [x] Auto preview generation (Sharp or Jimp)
+- [x] Folder watcher
 
 ## v2.0 — Growth
 - [ ] QR code system per event
