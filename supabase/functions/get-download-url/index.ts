@@ -25,12 +25,20 @@ Deno.serve(async (req) => {
       })
     }
 
-    const { data: order, error: orderError } = await supabase
+    // Try by download_token first, then by stripe_session_id
+    let query = supabase
       .from('orders')
       .select('*, photos(hd_path)')
-      .eq('download_token', token)
       .eq('status', 'paid')
-      .single()
+
+    const isStripeSession = token.startsWith('cs_')
+    if (isStripeSession) {
+      query = query.eq('stripe_session_id', token)
+    } else {
+      query = query.eq('download_token', token)
+    }
+
+    const { data: order, error: orderError } = await query.single()
 
     if (orderError || !order) {
       return new Response(JSON.stringify({ error: 'Invalid or expired token' }), {
@@ -56,7 +64,7 @@ Deno.serve(async (req) => {
 
     const { data: signedData, error: signedError } = await supabase.storage
       .from('originals')
-      .createSignedUrl(hdPath, 60 * 60) // 1 hour
+      .createSignedUrl(hdPath, 60 * 60)
 
     if (signedError || !signedData?.signedUrl) {
       return new Response(JSON.stringify({ error: 'Could not generate download URL' }), {
