@@ -103,7 +103,14 @@ export default function MarketingFooter() {
               </a>
             </div>
           </div>
-          <p className="text-center text-white/30 text-xs mt-5">
+          <div className="flex items-center justify-center gap-4 mt-4 text-white/30 text-xs">
+            <Link to="/terms" className="hover:text-white/60 transition-colors">Terms</Link>
+            <span>·</span>
+            <Link to="/privacy" className="hover:text-white/60 transition-colors">Privacy</Link>
+            <span>·</span>
+            <Link to="/refund" className="hover:text-white/60 transition-colors">Refund Policy</Link>
+          </div>
+          <p className="text-center text-white/30 text-xs mt-2">
             &copy; {new Date().getFullYear()} PhotoInstant. All rights reserved.
           </p>
         </div>

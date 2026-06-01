@@ -1,10 +1,11 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import { Calendar, Clock, MapPin, Instagram } from 'lucide-react'
 import { usePhotos } from '../hooks/usePhotos'
 import PhotoGrid from '../components/PhotoGrid'
 import type { PhotoFilters } from '../types'
 
 const HOURS = Array.from({ length: 24 }, (_, i) => i)
+const PAGE_SIZE = 48
 
 function formatHour(h: number) {
   return `${String(h).padStart(2, '0')}:00`
@@ -15,6 +16,7 @@ export default function GalleryPage() {
   const [hourStart, setHourStart] = useState<number | undefined>()
   const [hourEnd, setHourEnd] = useState<number | undefined>()
   const [location, setLocation] = useState('')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
 
   const filters: PhotoFilters = useMemo(
     () => ({
@@ -27,6 +29,16 @@ export default function GalleryPage() {
   )
 
   const { data: photos = [], isLoading } = usePhotos(filters)
+  const visiblePhotos = photos.slice(0, visibleCount)
+  const hasMore = visibleCount < photos.length
+
+  const resetFilters = useCallback(() => {
+    setDate('')
+    setHourStart(undefined)
+    setHourEnd(undefined)
+    setLocation('')
+    setVisibleCount(PAGE_SIZE)
+  }, [])
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
@@ -91,15 +103,7 @@ export default function GalleryPage() {
         </div>
 
         {(date || hourStart !== undefined || hourEnd !== undefined || location) && (
-          <button
-            onClick={() => {
-              setDate('')
-              setHourStart(undefined)
-              setHourEnd(undefined)
-              setLocation('')
-            }}
-            className="text-white/50 hover:text-white text-xs transition-colors"
-          >
+          <button onClick={resetFilters} className="text-white/50 hover:text-white text-xs transition-colors">
             Clear filters
           </button>
         )}
@@ -109,7 +113,18 @@ export default function GalleryPage() {
         <p className="text-white/50 text-sm">{isLoading ? 'Loading…' : `${photos.length} photo${photos.length !== 1 ? 's' : ''} found`}</p>
       </div>
 
-      <PhotoGrid photos={photos} loading={isLoading} />
+      <PhotoGrid photos={visiblePhotos} loading={isLoading} />
+
+      {hasMore && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setVisibleCount(c => c + PAGE_SIZE)}
+            className="px-6 py-2.5 bg-night-800 border border-white/10 hover:border-accent/40 rounded-xl text-sm text-white/70 hover:text-white transition-all"
+          >
+            Load more ({photos.length - visibleCount} remaining)
+          </button>
+        </div>
+      )}
 
       {/* Can't find your photo */}
       <div className="mt-12 border border-white/10 bg-night-800 rounded-2xl p-6 text-center">
