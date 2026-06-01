@@ -51,7 +51,7 @@ export default function RefundPage() {
 
         <section>
           <h2 className="text-white font-semibold text-lg mb-3">4. How to request a refund</h2>
-          <p>Email us at <a href="mailto:contact@vlogo.fr" className="text-accent-light hover:underline">contact@vlogo.fr</a> with:</p>
+          <p>Email us at <a href="mailto:hello@vlogo.fr" className="text-accent-light hover:underline">hello@vlogo.fr</a> with:</p>
           <ul className="mt-2 space-y-1">
             <li className="flex gap-3 list-none"><span className="text-accent-light">→</span> Your email address used at checkout</li>
             <li className="flex gap-3 list-none"><span className="text-accent-light">→</span> The date and event</li>
@@ -68,7 +68,7 @@ export default function RefundPage() {
 
         <section>
           <h2 className="text-white font-semibold text-lg mb-3">6. Contact</h2>
-          <p>Refund requests and questions: <a href="mailto:contact@vlogo.fr" className="text-accent-light hover:underline">contact@vlogo.fr</a></p>
+          <p>Refund requests and questions: <a href="mailto:hello@vlogo.fr" className="text-accent-light hover:underline">hello@vlogo.fr</a></p>
         </section>
 
       </div>

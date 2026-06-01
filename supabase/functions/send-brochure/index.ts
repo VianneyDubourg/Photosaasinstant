@@ -6,7 +6,7 @@ const supabase = createClient(
 )
 
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') ?? ''
-const PHOTOGRAPHER_EMAIL = Deno.env.get('PHOTOGRAPHER_EMAIL') ?? 'contact@vlogo.fr'
+const PHOTOGRAPHER_EMAIL = Deno.env.get('PHOTOGRAPHER_EMAIL') ?? 'hello@vlogo.fr'
 const BROCHURE_URL = Deno.env.get('BROCHURE_URL') ?? ''
 const SITE_URL = Deno.env.get('SITE_URL') ?? 'https://vlogo.fr'
 
@@ -82,7 +82,7 @@ Deno.serve(async (req) => {
           <p style="color:#9ca3af;margin:4px 0;">✓ Only 1 AUD per photo — or free for guests on full service</p>
         </div>
         <p style="color:#9ca3af;">Ready to book? Just reply to this email or reach out directly:</p>
-        <p style="color:#a78bfa;">contact@vlogo.fr · +61 400 000 000</p>
+        <p style="color:#a78bfa;">hello@vlogo.fr · +61 400 000 000</p>
         <p style="color:#374151;font-size:12px;margin-top:32px;">© 2026 PhotoInstant · Australia</p>
       </div>
     `

@@ -84,7 +84,7 @@ export default function PrivacyPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-3">To exercise any of these rights, contact us at <a href="mailto:contact@vlogo.fr" className="text-accent-light hover:underline">contact@vlogo.fr</a>. We will respond within 30 days.</p>
+          <p className="mt-3">To exercise any of these rights, contact us at <a href="mailto:hello@vlogo.fr" className="text-accent-light hover:underline">hello@vlogo.fr</a>. We will respond within 30 days.</p>
           <p className="mt-2">If you are not satisfied with our response, you may complain to the <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer" className="text-accent-light hover:underline">Office of the Australian Information Commissioner (OAIC)</a>.</p>
         </section>
 
@@ -95,12 +95,12 @@ export default function PrivacyPage() {
 
         <section>
           <h2 className="text-white font-semibold text-lg mb-3">8. Photography and consent</h2>
-          <p>Photos are taken in public or semi-public event spaces. If you appear in a photo published on this platform and wish it removed, contact us at <a href="mailto:contact@vlogo.fr" className="text-accent-light hover:underline">contact@vlogo.fr</a> and we will remove it within 48 hours.</p>
+          <p>Photos are taken in public or semi-public event spaces. If you appear in a photo published on this platform and wish it removed, contact us at <a href="mailto:hello@vlogo.fr" className="text-accent-light hover:underline">hello@vlogo.fr</a> and we will remove it within 48 hours.</p>
         </section>
 
         <section>
           <h2 className="text-white font-semibold text-lg mb-3">9. Contact</h2>
-          <p>Privacy enquiries: <a href="mailto:contact@vlogo.fr" className="text-accent-light hover:underline">contact@vlogo.fr</a></p>
+          <p>Privacy enquiries: <a href="mailto:hello@vlogo.fr" className="text-accent-light hover:underline">hello@vlogo.fr</a></p>
         </section>
 
       </div>

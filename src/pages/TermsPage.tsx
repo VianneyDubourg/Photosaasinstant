@@ -11,7 +11,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-white font-semibold text-lg mb-3">1. About PhotoInstant</h2>
-          <p>PhotoInstant is operated by Vianney Dubourg (ABN: <strong className="text-white">[YOUR ABN]</strong>), trading as PhotoInstant, based in Australia. Website: <a href="https://vlogo.fr" className="text-accent-light hover:underline">vlogo.fr</a>. Contact: <a href="mailto:contact@vlogo.fr" className="text-accent-light hover:underline">contact@vlogo.fr</a>.</p>
+          <p>PhotoInstant is operated by Vianney Dubourg (ABN: <strong className="text-white">[YOUR ABN]</strong>), trading as PhotoInstant, based in Australia. Website: <a href="https://vlogo.fr" className="text-accent-light hover:underline">vlogo.fr</a>. Contact: <a href="mailto:hello@vlogo.fr" className="text-accent-light hover:underline">hello@vlogo.fr</a>.</p>
           <p>By accessing or purchasing from this website, you agree to these Terms of Service.</p>
         </section>
 
@@ -29,7 +29,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-white font-semibold text-lg mb-3">4. Download Links</h2>
-          <p>After successful payment, you will receive a secure download link. This link is valid for 10 hours from the time of purchase, in line with our photo availability window. It is your responsibility to download your photo within this period. If you experience a technical issue, contact us at <a href="mailto:contact@vlogo.fr" className="text-accent-light hover:underline">contact@vlogo.fr</a> or via Instagram.</p>
+          <p>After successful payment, you will receive a secure download link. This link is valid for 10 hours from the time of purchase, in line with our photo availability window. It is your responsibility to download your photo within this period. If you experience a technical issue, contact us at <a href="mailto:hello@vlogo.fr" className="text-accent-light hover:underline">hello@vlogo.fr</a> or via Instagram.</p>
         </section>
 
         <section>
@@ -71,7 +71,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-white font-semibold text-lg mb-3">12. Contact</h2>
-          <p>Questions about these terms: <a href="mailto:contact@vlogo.fr" className="text-accent-light hover:underline">contact@vlogo.fr</a></p>
+          <p>Questions about these terms: <a href="mailto:hello@vlogo.fr" className="text-accent-light hover:underline">hello@vlogo.fr</a></p>
         </section>
 
       </div>

@@ -33,7 +33,7 @@ export default function MarketingFooter() {
                 I come at a reduced rate. Your clients scan the QR code, pay <strong className="text-white">1 AUD</strong> and download their HD photo instantly. Zero cost to you beyond my booking fee.
               </p>
               <a
-                href="mailto:contact@vlogo.fr?subject=Budget booking inquiry&body=Hi, I'm interested in the budget booking option (clients pay 1 AUD for their photos). My event details:"
+                href="mailto:hello@vlogo.fr?subject=Budget booking inquiry&body=Hi, I'm interested in the budget booking option (clients pay 1 AUD for their photos). My event details:"
                 className="inline-flex items-center gap-1.5 text-green-400 hover:text-green-300 text-xs font-medium transition-colors"
               >
                 Get a quote →
@@ -58,7 +58,7 @@ export default function MarketingFooter() {
                 You pay my full rate, your guests download their HD photos for <strong className="text-white">free</strong>. A premium experience — perfect for brand activations, corporate events or luxury venues.
               </p>
               <a
-                href="mailto:contact@vlogo.fr?subject=Full service booking inquiry&body=Hi, I'm interested in the full service option (photos free for guests, I pay the full rate). My event details:"
+                href="mailto:hello@vlogo.fr?subject=Full service booking inquiry&body=Hi, I'm interested in the full service option (photos free for guests, I pay the full rate). My event details:"
                 className="inline-flex items-center gap-1.5 text-accent-light hover:text-white text-xs font-medium transition-colors"
               >
                 Get a quote →
@@ -67,7 +67,7 @@ export default function MarketingFooter() {
           </div>
 
           <p className="text-center text-white/30 text-xs">
-            Not sure which option? <a href="mailto:contact@vlogo.fr?subject=Venue inquiry" className="text-accent-light hover:underline">Send me a message</a> and we'll figure it out together.
+            Not sure which option? <a href="mailto:hello@vlogo.fr?subject=Venue inquiry" className="text-accent-light hover:underline">Send me a message</a> and we'll figure it out together.
           </p>
           <div className="text-center mt-3">
             <Link to="/brochure" className="inline-flex items-center gap-1.5 text-white/50 hover:text-accent-light text-xs transition-colors">
@@ -93,9 +93,9 @@ export default function MarketingFooter() {
                 <Instagram size={15} />
                 <span>@photoinstant</span>
               </a>
-<a href="mailto:contact@vlogo.fr" className="flex items-center gap-1.5 hover:text-accent-light transition-colors">
+<a href="mailto:hello@vlogo.fr" className="flex items-center gap-1.5 hover:text-accent-light transition-colors">
                 <Mail size={15} />
-                <span>contact@vlogo.fr</span>
+                <span>hello@vlogo.fr</span>
               </a>
             </div>
           </div>
