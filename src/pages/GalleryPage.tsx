@@ -133,7 +133,7 @@ export default function GalleryPage() {
           Photos are available for 10 hours after the event. If yours has expired or you can't find it, send me a DM on Instagram with a photo of yourself and I'll find it for you.
         </p>
         <a
-          href="https://instagram.com/photoinstant"
+          href="https://instagram.com/vlogo.photoinstant"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all text-white px-5 py-2.5 rounded-xl font-medium text-sm"

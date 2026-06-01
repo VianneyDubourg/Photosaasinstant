@@ -85,13 +85,13 @@ export default function MarketingFooter() {
             <p className="text-white/80 font-medium">📸 Organizing an event? Book a photographer.</p>
             <div className="flex flex-wrap items-center justify-center gap-5 mt-3">
               <a
-                href="https://instagram.com/photoinstant"
+                href="https://instagram.com/vlogo.photoinstant"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 hover:text-accent-light transition-colors"
               >
                 <Instagram size={15} />
-                <span>@photoinstant</span>
+                <span>vlogo.photoinstant</span>
               </a>
 <a href="mailto:hello@vlogo.fr" className="flex items-center gap-1.5 hover:text-accent-light transition-colors">
                 <Mail size={15} />

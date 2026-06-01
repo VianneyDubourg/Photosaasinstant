@@ -50,14 +50,24 @@ export async function processPhoto(filePath: string, config: {
   const previewWatermark = Buffer.from(`
     <svg width="${pw}" height="${ph}">
       <text
-        x="50%" y="50%"
+        x="50%" y="40%"
         text-anchor="middle" dominant-baseline="middle"
         font-family="Arial, sans-serif"
-        font-size="${Math.round(pw * 0.08)}px"
+        font-size="${Math.round(pw * 0.09)}px"
         font-weight="bold"
-        fill="rgba(255,255,255,0.18)"
+        fill="rgba(255,255,255,0.55)"
         transform="rotate(-25, ${pw / 2}, ${ph / 2})"
-        letter-spacing="8"
+        letter-spacing="12"
+      >${config.watermarkText.toUpperCase()}</text>
+      <text
+        x="50%" y="62%"
+        text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif"
+        font-size="${Math.round(pw * 0.09)}px"
+        font-weight="bold"
+        fill="rgba(255,255,255,0.55)"
+        transform="rotate(-25, ${pw / 2}, ${ph / 2})"
+        letter-spacing="12"
       >${config.watermarkText.toUpperCase()}</text>
     </svg>
   `)

@@ -94,9 +94,9 @@ export default function SuccessPage() {
             <Mail size={14} />
             hello@vlogo.fr
           </a>
-          <a href="https://instagram.com/photoinstant" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-white/50 hover:text-accent-light transition-colors">
+          <a href="https://instagram.com/vlogo.photoinstant" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-white/50 hover:text-accent-light transition-colors">
             <Instagram size={14} />
-            @photoinstant
+            vlogo.photoinstant
           </a>
         </div>
       </div>
