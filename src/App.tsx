@@ -12,6 +12,7 @@ import AdminDashboardPage from './pages/admin/AdminDashboardPage'
 import AdminPhotosPage from './pages/admin/AdminPhotosPage'
 import AdminOrdersPage from './pages/admin/AdminOrdersPage'
 import SlideshowPage from './pages/SlideshowPage'
+import BrochurePage from './pages/BrochurePage'
 
 function ProtectedSlideshow() {
   const [authed, setAuthed] = useState<boolean | null>(null)
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/photos" element={<GalleryPage />} />
         <Route path="/photo/:id" element={<PhotoPage />} />
         <Route path="/success" element={<SuccessPage />} />
+        <Route path="/brochure" element={<BrochurePage />} />
       </Route>
       <Route path="/admin/login" element={<AdminLoginPage />} />
       <Route path="/admin" element={<AdminLayout />}>

@@ -77,6 +77,25 @@ Configure Stripe webhook endpoint in the Stripe dashboard:
 - URL: `https://YOUR_PROJECT_REF.supabase.co/functions/v1/stripe-webhook`
 - Events: `checkout.session.completed`
 
+## 3c. Send-brochure Edge Function setup
+
+Set additional secrets:
+```bash
+supabase secrets set RESEND_API_KEY=re_...
+supabase secrets set PHOTOGRAPHER_EMAIL=your@email.com
+supabase secrets set BROCHURE_URL=https://yourdomain.com/PhotoInstant_Brochure.pdf
+supabase secrets set SITE_URL=https://yourdomain.com
+```
+
+Upload the brochure PDF to your LWS hosting root alongside the React app.
+
+Deploy:
+```bash
+supabase functions deploy send-brochure
+```
+
+Sign up free at resend.com — verify your domain (vlogo.fr) for sending.
+
 ---
 
 ## 4. Build for Production

@@ -57,3 +57,23 @@ create index photos_taken_at_idx on public.photos(taken_at desc);
 create index photos_is_active_idx on public.photos(is_active);
 create index orders_download_token_idx on public.orders(download_token);
 create index orders_stripe_session_idx on public.orders(stripe_session_id);
+
+-- Leads table (brochure downloads)
+create table public.leads (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz default now() not null,
+  email text not null,
+  name text,
+  venue_name text,
+  ip_hash text
+);
+
+alter table public.leads enable row level security;
+
+-- Anyone can insert a lead (public form)
+create policy "Public can submit leads"
+  on public.leads for insert
+  with check (true);
+
+create index leads_email_idx on public.leads(email);
+create index leads_created_at_idx on public.leads(created_at desc);

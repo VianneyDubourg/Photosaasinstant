@@ -45,7 +45,7 @@ Deno.serve(async (req) => {
       })
     }
 
-    const origin = req.headers.get('origin') ?? 'https://photoinstant.au'
+    const origin = req.headers.get('origin') ?? 'https://vlogo.fr'
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',

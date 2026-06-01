@@ -1,4 +1,5 @@
-import { Instagram, Phone, Mail, Building2, Users, Zap } from 'lucide-react'
+import { Instagram, Phone, Mail, Building2, Users, Zap, Download } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function MarketingFooter() {
   return (
@@ -32,7 +33,7 @@ export default function MarketingFooter() {
                 I come at a reduced rate. Your clients scan the QR code, pay <strong className="text-white">1 AUD</strong> and download their HD photo instantly. Zero cost to you beyond my booking fee.
               </p>
               <a
-                href="mailto:contact@photoinstant.au?subject=Budget booking inquiry&body=Hi, I'm interested in the budget booking option (clients pay 1 AUD for their photos). My event details:"
+                href="mailto:contact@vlogo.fr?subject=Budget booking inquiry&body=Hi, I'm interested in the budget booking option (clients pay 1 AUD for their photos). My event details:"
                 className="inline-flex items-center gap-1.5 text-green-400 hover:text-green-300 text-xs font-medium transition-colors"
               >
                 Get a quote →
@@ -57,7 +58,7 @@ export default function MarketingFooter() {
                 You pay my full rate, your guests download their HD photos for <strong className="text-white">free</strong>. A premium experience — perfect for brand activations, corporate events or luxury venues.
               </p>
               <a
-                href="mailto:contact@photoinstant.au?subject=Full service booking inquiry&body=Hi, I'm interested in the full service option (photos free for guests, I pay the full rate). My event details:"
+                href="mailto:contact@vlogo.fr?subject=Full service booking inquiry&body=Hi, I'm interested in the full service option (photos free for guests, I pay the full rate). My event details:"
                 className="inline-flex items-center gap-1.5 text-accent-light hover:text-white text-xs font-medium transition-colors"
               >
                 Get a quote →
@@ -66,8 +67,14 @@ export default function MarketingFooter() {
           </div>
 
           <p className="text-center text-white/30 text-xs">
-            Not sure which option? <a href="mailto:contact@photoinstant.au?subject=Venue inquiry" className="text-accent-light hover:underline">Send me a message</a> and we'll figure it out together.
+            Not sure which option? <a href="mailto:contact@vlogo.fr?subject=Venue inquiry" className="text-accent-light hover:underline">Send me a message</a> and we'll figure it out together.
           </p>
+          <div className="text-center mt-3">
+            <Link to="/brochure" className="inline-flex items-center gap-1.5 text-white/50 hover:text-accent-light text-xs transition-colors">
+              <Download size={12} />
+              Download our free brochure (PDF)
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -90,9 +97,9 @@ export default function MarketingFooter() {
                 <Phone size={15} />
                 <span>+61 400 000 000</span>
               </a>
-              <a href="mailto:contact@photoinstant.au" className="flex items-center gap-1.5 hover:text-accent-light transition-colors">
+              <a href="mailto:contact@vlogo.fr" className="flex items-center gap-1.5 hover:text-accent-light transition-colors">
                 <Mail size={15} />
-                <span>contact@photoinstant.au</span>
+                <span>contact@vlogo.fr</span>
               </a>
             </div>
           </div>
