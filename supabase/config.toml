@@ -27,11 +27,3 @@ site_url = "http://localhost:5173"
 
 [functions.cleanup-old-photos]
 verify_jwt = false
-
-[cron]
-enabled = true
-
-[[cron.jobs]]
-name = "cleanup-old-photos"
-schedule = "0 * * * *"
-function = "cleanup-old-photos"
