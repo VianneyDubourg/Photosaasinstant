@@ -19,12 +19,13 @@ export default function PhotoCard({ photo }: Props) {
       to={`/photo/${photo.id}`}
       className="group block rounded-xl overflow-hidden bg-night-800 border border-white/10 hover:border-accent/50 transition-all hover:scale-[1.02]"
     >
-      <div className="aspect-[3/2] overflow-hidden relative">
+      <div className="aspect-[3/2] overflow-hidden relative bg-night-700">
         <img
           src={previewUrl}
           alt="Event photo preview"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-0 transition-opacity"
           loading="lazy"
+          onLoad={(e) => (e.currentTarget.style.opacity = '1')}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         <div className="absolute bottom-2 left-2 flex items-center gap-3 text-white/80 text-xs">

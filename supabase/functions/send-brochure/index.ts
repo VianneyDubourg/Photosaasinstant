@@ -82,7 +82,7 @@ Deno.serve(async (req) => {
           <p style="color:#9ca3af;margin:4px 0;">✓ Only 1 AUD per photo — or free for guests on full service</p>
         </div>
         <p style="color:#9ca3af;">Ready to book? Just reply to this email or reach out directly:</p>
-        <p style="color:#a78bfa;">hello@vlogo.fr · +61 400 000 000</p>
+        <p style="color:#a78bfa;">hello@vlogo.fr</p>
         <p style="color:#374151;font-size:12px;margin-top:32px;">© 2026 PhotoInstant · Australia</p>
       </div>
     `

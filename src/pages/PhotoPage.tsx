@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { MapPin, Clock, Calendar, ArrowLeft, Download, Loader2 } from 'lucide-react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { MapPin, Clock, Calendar, ArrowLeft, Download, Loader2, ShieldCheck } from 'lucide-react'
 import { usePhoto } from '../hooks/usePhotos'
 import { getPreviewUrl, supabase } from '../lib/supabase'
 
 export default function PhotoPage() {
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const { data: photo, isLoading, error } = usePhoto(id ?? '')
   const [purchasing, setPurchasing] = useState(false)
 
@@ -36,8 +37,8 @@ export default function PhotoPage() {
   if (error || !photo) {
     return (
       <div className="max-w-lg mx-auto px-4 py-20 text-center">
-        <p className="text-white/60 mb-4">Photo not found.</p>
-        <Link to="/photos" className="text-accent-light hover:underline">← Back to gallery</Link>
+        <p className="text-white/60 mb-4">Photo not found or has expired.</p>
+        <button onClick={() => navigate(-1)} className="text-accent-light hover:underline">← Back to gallery</button>
       </div>
     )
   }
@@ -47,10 +48,10 @@ export default function PhotoPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <Link to="/photos" className="flex items-center gap-1.5 text-white/50 hover:text-white text-sm mb-6 transition-colors">
+      <button onClick={() => navigate(-1)} className="flex items-center gap-1.5 text-white/50 hover:text-white text-sm mb-6 transition-colors">
         <ArrowLeft size={15} />
         Back to gallery
-      </Link>
+      </button>
 
       <div className="grid md:grid-cols-2 gap-8 items-start">
         <div className="relative rounded-2xl overflow-hidden border border-white/10">
@@ -109,9 +110,10 @@ export default function PhotoPage() {
             </button>
           </div>
 
-          <p className="text-white/30 text-xs text-center">
-            Secure payment via Stripe. Instant download after payment.
-          </p>
+          <div className="flex items-center justify-center gap-1.5 text-white/30 text-xs">
+            <ShieldCheck size={13} />
+            Secure payment via Stripe · Instant download
+          </div>
         </div>
       </div>
     </div>
