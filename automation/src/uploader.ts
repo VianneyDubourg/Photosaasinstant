@@ -16,15 +16,13 @@ export function createUploader(config: UploaderConfig) {
 
   return async function upload(
     previewPath: string,
-    originalPath: string,
+    hdPath: string,
     takenAt: Date
   ): Promise<{ photoId: string }> {
     const id = crypto.randomUUID()
-    const ext = path.extname(originalPath).toLowerCase().replace('.', '')
-    const safeExt = ['jpg', 'jpeg', 'png'].includes(ext) ? ext : 'jpg'
 
     const previewStoragePath = `${id}_preview.jpg`
-    const hdStoragePath = `${id}_hd.${safeExt}`
+    const hdStoragePath = `${id}_hd.jpg`
 
     // Upload preview (public bucket)
     logger.info(`Uploading preview to storage…`)
@@ -39,13 +37,13 @@ export function createUploader(config: UploaderConfig) {
     if (previewError) throw new Error(`Preview upload failed: ${previewError.message}`)
     logger.success(`Preview uploaded: ${previewStoragePath}`)
 
-    // Upload original (private bucket)
-    logger.info(`Uploading HD original to storage…`)
-    const originalBuffer = fs.readFileSync(originalPath)
+    // Upload HD with copyright (private bucket)
+    logger.info(`Uploading HD (with copyright) to storage…`)
+    const hdBuffer = fs.readFileSync(hdPath)
     const { error: hdError } = await supabase.storage
       .from('originals')
-      .upload(hdStoragePath, originalBuffer, {
-        contentType: `image/${safeExt === 'jpg' ? 'jpeg' : safeExt}`,
+      .upload(hdStoragePath, hdBuffer, {
+        contentType: 'image/jpeg',
         upsert: false,
       })
 

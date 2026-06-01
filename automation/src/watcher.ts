@@ -52,11 +52,12 @@ export function startWatcher(
 
     try {
       const processed = await processPhoto(filePath, processorConfig)
-      const result = await upload(processed.previewPath, processed.originalPath, processed.takenAt)
+      const result = await upload(processed.previewPath, processed.hdPath, processed.takenAt)
       logger.success(`Done! Photo ID: ${result.photoId} — visible at /photo/${result.photoId}`)
 
-      // Clean up temp preview
+      // Clean up temp files
       try { fs.unlinkSync(processed.previewPath) } catch { /* ignore */ }
+      try { fs.unlinkSync(processed.hdPath) } catch { /* ignore */ }
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err)
       logger.error(`Failed to process ${path.basename(filePath)}: ${message}`)

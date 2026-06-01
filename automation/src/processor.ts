@@ -6,7 +6,7 @@ import { logger } from './logger'
 
 export interface ProcessedPhoto {
   previewPath: string
-  originalPath: string
+  hdPath: string
   takenAt: Date
 }
 
@@ -18,6 +18,7 @@ export async function processPhoto(filePath: string, config: {
   const tmpDir = os.tmpdir()
   const baseName = path.basename(filePath, path.extname(filePath))
   const previewPath = path.join(tmpDir, `${baseName}_preview.jpg`)
+  const hdPath = path.join(tmpDir, `${baseName}_hd.jpg`)
 
   logger.info(`Processing: ${path.basename(filePath)}`)
 
@@ -25,10 +26,10 @@ export async function processPhoto(filePath: string, config: {
   const stat = fs.statSync(filePath)
   let takenAt = stat.mtime
 
+  const meta = await sharp(filePath).metadata()
+
   try {
-    const meta = await sharp(filePath).metadata()
     if (meta.exif) {
-      // Try to extract DateTimeOriginal from EXIF if available
       const exifStr = meta.exif.toString('binary')
       const match = exifStr.match(/(\d{4}):(\d{2}):(\d{2}) (\d{2}):(\d{2}):(\d{2})/)
       if (match) {
@@ -39,35 +40,70 @@ export async function processPhoto(filePath: string, config: {
     // Use file mtime if EXIF fails
   }
 
-  // Generate watermarked preview
-  const watermarkSvg = Buffer.from(`
-    <svg width="${config.previewWidth}" height="${Math.round(config.previewWidth * 0.667)}">
+  const imgWidth = meta.width ?? 1920
+  const imgHeight = meta.height ?? 1280
+
+  // ── 1. Preview — resized + diagonal PREVIEW watermark ──────────────────
+  const pw = config.previewWidth
+  const ph = Math.round(pw * 0.667)
+
+  const previewWatermark = Buffer.from(`
+    <svg width="${pw}" height="${ph}">
       <text
-        x="50%"
-        y="50%"
-        text-anchor="middle"
-        dominant-baseline="middle"
+        x="50%" y="50%"
+        text-anchor="middle" dominant-baseline="middle"
         font-family="Arial, sans-serif"
-        font-size="${Math.round(config.previewWidth * 0.08)}px"
+        font-size="${Math.round(pw * 0.08)}px"
         font-weight="bold"
         fill="rgba(255,255,255,0.18)"
-        transform="rotate(-25, ${config.previewWidth / 2}, ${Math.round(config.previewWidth * 0.667) / 2})"
+        transform="rotate(-25, ${pw / 2}, ${ph / 2})"
         letter-spacing="8"
       >${config.watermarkText.toUpperCase()}</text>
     </svg>
   `)
 
   await sharp(filePath)
-    .resize(config.previewWidth, undefined, { withoutEnlargement: true })
-    .composite([{ input: watermarkSvg, blend: 'over' }])
+    .resize(pw, undefined, { withoutEnlargement: true })
+    .composite([{ input: previewWatermark, blend: 'over' }])
     .jpeg({ quality: config.previewQuality })
     .toFile(previewPath)
 
   logger.success(`Preview generated: ${path.basename(previewPath)}`)
 
+  // ── 2. HD — full resolution + subtle copyright at bottom center ─────────
+  const fontSize = Math.max(18, Math.round(imgWidth * 0.012))
+  const barHeight = Math.round(fontSize * 2.4)
+  const copyrightText = `© Vianney Dubourg · vlogo.fr`
+
+  const copyrightOverlay = Buffer.from(`
+    <svg width="${imgWidth}" height="${imgHeight}">
+      <rect
+        x="0" y="${imgHeight - barHeight}"
+        width="${imgWidth}" height="${barHeight}"
+        fill="rgba(0,0,0,0.38)"
+      />
+      <text
+        x="50%" y="${imgHeight - barHeight / 2}"
+        text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="${fontSize}px"
+        fill="rgba(255,255,255,0.72)"
+        letter-spacing="1"
+      >${copyrightText}</text>
+    </svg>
+  `)
+
+  await sharp(filePath)
+    .composite([{ input: copyrightOverlay, blend: 'over' }])
+    .jpeg({ quality: 95 })
+    .toFile(hdPath)
+
+  logger.success(`HD processed with copyright: ${path.basename(hdPath)}`)
+
   return {
     previewPath,
-    originalPath: filePath,
+    hdPath,
     takenAt,
   }
 }
+
