@@ -1,0 +1,240 @@
+/* ──────────────────────────────────────────────────────────────
+   sidebar.css — Dock vertical gauche style CarPlay
+   ────────────────────────────────────────────────────────────── */
+
+#sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(8, 8, 16, 0.82);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  z-index: 100;
+  padding: 0 0 12px 0;
+  position: relative;
+}
+
+/* ── Barre de statut ────────────────────────────────────────── */
+#status-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 0 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  gap: 6px;
+}
+
+#clock {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+#clock-date {
+  font-size: 9px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+
+#status-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-tertiary);
+}
+
+.status-icon svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.5;
+}
+
+/* Barres de signal personnalisées */
+.signal-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.signal-bars span {
+  display: block;
+  width: 3px;
+  background: var(--text-tertiary);
+  border-radius: 1px;
+}
+
+.signal-bars span:nth-child(1) { height: 4px; }
+.signal-bars span:nth-child(2) { height: 7px; }
+.signal-bars span:nth-child(3) { height: 10px; }
+.signal-bars span:nth-child(4) { height: 12px; }
+
+.signal-bars.active span { background: var(--text-secondary); }
+
+/* Icône batterie textuelle */
+.battery-text {
+  font-size: 9px;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Navigation — icônes d'apps ─────────────────────────────── */
+#app-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+#app-nav::-webkit-scrollbar { display: none; }
+
+/* Squircle bouton d'app */
+.app-btn {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-squircle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--app-color, rgba(100, 100, 120, 0.35));
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    opacity var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.app-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 1.75;
+  fill: none;
+}
+
+/* État actif */
+.app-btn.active {
+  box-shadow: 0 0 0 2.5px var(--app-color, var(--accent)),
+              var(--shadow-md);
+  transform: scale(1.06);
+}
+
+/* Appui tactile */
+.app-btn:active {
+  transform: scale(0.92);
+  opacity: 0.85;
+}
+
+/* Couleurs par app */
+.app-btn[data-view="maps"]  { --app-color: #34C759; }
+.app-btn[data-view="music"] { --app-color: #1DB954; }
+
+/* Tooltip au hover */
+.app-btn::after {
+  content: attr(data-label);
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(20, 20, 30, 0.95);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: 200;
+  box-shadow: var(--shadow-sm);
+}
+
+.app-btn:hover::after {
+  opacity: 1;
+}
+
+/* ── Zone basse : accueil, plein écran, à propos ────────────── */
+#sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.ctrl-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.ctrl-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+  stroke: currentColor;
+  fill: none;
+}
+
+.ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+}
+
+.ctrl-btn:active {
+  transform: scale(0.88);
+}
+
+#home-btn {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+}
+
+#home-btn svg {
+  width: 20px;
+  height: 20px;
+}

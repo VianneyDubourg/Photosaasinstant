@@ -1,0 +1,44 @@
+name: 🚀 Déploiement FTP
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'autodeck/**'
+
+  # Permet de déclencher manuellement depuis l'onglet Actions
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Déployer via FTP
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupération du code
+        uses: actions/checkout@v4
+
+      - name: Déploiement FTP → serveur
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          # ── Secrets GitHub à créer dans :
+          # Settings > Secrets and variables > Actions
+          server:   ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+
+          # Dossier local à déployer
+          local-dir: ./autodeck/
+
+          # Dossier de destination sur le serveur FTP
+          # Exemple : /public_html/ ou /www/autodeck/
+          server-dir: /public_html/autodeck/
+
+          # Fichiers/dossiers exclus du déploiement
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/README*
+            **/node_modules/**
+            **/*.md
