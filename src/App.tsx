@@ -3,7 +3,11 @@ import { useEffect, useState } from 'react'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    const canonical = document.querySelector('link[rel="canonical"]')
+    if (canonical) canonical.setAttribute('href', `https://vlogo.fr${pathname}`)
+  }, [pathname])
   return null
 }
 import { supabase } from './lib/supabase'
