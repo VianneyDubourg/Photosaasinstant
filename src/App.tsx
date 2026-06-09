@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
-    window.scrollTo(0, 0)
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
     const canonical = document.querySelector('link[rel="canonical"]')
     if (canonical) canonical.setAttribute('href', `https://vlogo.fr${pathname}`)
   }, [pathname])
