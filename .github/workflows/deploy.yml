@@ -23,6 +23,10 @@ jobs:
         run: |
           supabase functions deploy delete-photo --project-ref aumljfvuanxrxfmpvzbd
           supabase functions deploy cleanup-old-photos --project-ref aumljfvuanxrxfmpvzbd
+          supabase functions deploy send-brochure --project-ref aumljfvuanxrxfmpvzbd
+          supabase functions deploy stripe-webhook --project-ref aumljfvuanxrxfmpvzbd
+          supabase functions deploy create-checkout --project-ref aumljfvuanxrxfmpvzbd
+          supabase functions deploy get-download-url --project-ref aumljfvuanxrxfmpvzbd
 
   build-and-deploy:
     runs-on: ubuntu-latest

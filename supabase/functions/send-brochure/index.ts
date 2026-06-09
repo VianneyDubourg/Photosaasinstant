@@ -51,12 +51,13 @@ Deno.serve(async (req) => {
       )
     }
 
-    // Store lead
-    await supabase.from('leads').insert({
+    // Store lead — always save regardless of email outcome
+    const { error: leadError } = await supabase.from('leads').insert({
       email,
       name: name || null,
       venue_name: venueName || null,
     })
+    if (leadError) console.error('Lead insert error:', leadError.message)
 
     // Email to client with brochure link
     const clientHtml = `
