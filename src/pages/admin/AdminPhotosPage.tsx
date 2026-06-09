@@ -30,11 +30,9 @@ export default function AdminPhotosPage() {
 
   const deletePhoto = useMutation({
     mutationFn: async (photo: Photo) => {
-      // Delete files from storage first
-      await supabase.storage.from('previews').remove([photo.preview_path])
-      await supabase.storage.from('originals').remove([photo.hd_path])
-      // Then delete the database record
-      const { error } = await supabase.from('photos').delete().eq('id', photo.id)
+      const { error } = await supabase.functions.invoke('delete-photo', {
+        body: { id: photo.id, preview_path: photo.preview_path, hd_path: photo.hd_path },
+      })
       if (error) throw error
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: ['admin-photos'] }),
