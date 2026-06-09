@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { supabase } from './lib/supabase'
 import Layout from './components/Layout'
@@ -19,6 +19,12 @@ import PrivacyPage from './pages/PrivacyPage'
 import RefundPage from './pages/RefundPage'
 import NotFoundPage from './pages/NotFoundPage'
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
+
 function ProtectedSlideshow() {
   const [authed, setAuthed] = useState<boolean | null>(null)
   useEffect(() => {
@@ -31,6 +37,8 @@ function ProtectedSlideshow() {
 
 export default function App() {
   return (
+    <>
+    <ScrollToTop />
     <Routes>
       <Route path="/slideshow" element={<ProtectedSlideshow />} />
       <Route element={<Layout />}>
@@ -52,5 +60,6 @@ export default function App() {
         <Route path="leads" element={<AdminLeadsPage />} />
       </Route>
     </Routes>
+    </>
   )
 }
